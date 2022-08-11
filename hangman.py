@@ -19,7 +19,8 @@ class Hangman:
         if words.find(letter.lower())==-1:
             self.lifes=self.lifes-1
         #    raise InvalidAssignmentException
-
+        #convierto el string en lista y si matchea lo voy reemplazando por las letras que van ingresando como parametros al metodo
+        #caso contrario no hace nada y pierde una vida
         temp=list(self.word.lower())
         temp2=self.display.split(":",2)
         temp2=list(temp2[2].replace(" ","")) 
@@ -33,6 +34,7 @@ class Hangman:
     def show(self):
         return self.display                 
     def winner(self):
+        #comparo, mi win condition es que el display coincida con el atributo palabra
         temp=self.display.split(":",2)
         temp=temp[2].replace(" ","")
         if self.word.lower()==temp:
@@ -42,9 +44,10 @@ class Hangman:
             a=False
         return a
     def play(self):
+        #metodo que arranca el juego, mientras tenga vidas voy a tomar caracteres
+        #el juego se frena cuando se gana o se pierde
         print(self.display)
         while self.lifes!=0:
-            print(self.winner())
             a=input()
             self.assign(a)
             print(self.display)
@@ -54,8 +57,6 @@ class Hangman:
         
         
 
-# hangman = Hangman()
-# hangman.set_word("programacion")
- 
-# hangman.assign("a")
+
+
 
