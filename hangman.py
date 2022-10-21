@@ -18,7 +18,7 @@ class Hangman:
         words=self.word.lower()
         if words.find(letter.lower())==-1:
             self.lifes=self.lifes-1
-        #    raise InvalidAssignmentException
+            raise InvalidAssignmentException()
         #convierto el string en lista y si matchea lo voy reemplazando por las letras que van ingresando como parametros al metodo
         #caso contrario no hace nada y pierde una vida
         temp=list(self.word.lower())
@@ -46,15 +46,22 @@ class Hangman:
     def play(self):
         #metodo que arranca el juego, mientras tenga vidas voy a tomar caracteres
         #el juego se frena cuando se gana o se pierde
-        print(self.display)
-        while self.lifes!=0:
-            a=input()
-            self.assign(a)
+        try:
             print(self.display)
+            while self.lifes!=0: 
+                a=input()
+                self.assign(a)
+                print(self.display)
+                if self.winner()==True:
+                    return "Ganaste"
+        except:
+            if self.lifes!=0:
+                self.play()
+            if self.lifes==0:
+                return "Perdiste"
             if self.winner()==True:
-                return "Ganaste"
-        return "Perdiste"
-        
+                    return "Ganaste"   
+
         
 
 
